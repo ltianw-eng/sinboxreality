@@ -1,3 +1,4 @@
+%%writefile /content/sshx_auto.py
 import subprocess
 import sys
 
@@ -156,11 +157,18 @@ def main():
             expires_at = datetime.now() + timedelta(minutes=SESSION_TIMEOUT_MINUTES)
             config['last_session_info'] = {'link': new_link, 'expires_at': expires_at.isoformat()}
             save_config(config)
-            print('\\n' + '='*50)
-            print('🔗 新链接已生成并复制！')
+            # ===== 🔗 强制显示链接 (新增) =====
+            print('\\n' + '='*80)
+            print('🔗 SSHx 会话已启动！请复制以下链接到浏览器打开：')
+            print()
             print(f'🌐 链接: {new_link}')
-            print(f'⏰ 有效期至: {expires_at.strftime('%Y-%m-%d %H:%M:%S')}')
-            print('='*50)
+            print()
+            print('💡 重要提示：')
+            print('   • 请在新标签页中打开此链接')
+            print('   • 链接有效期 50 分钟，支持自动续期')
+            print('   • 请勿刷新当前 Colab 页面')
+            print('='*80)
+            # ===== 结束新增 =====
             copy_to_clipboard(new_link)
             if AUTO_OPEN_BROWSER: open_in_browser(new_link)
         else: log_message('❌ 续期失败')
@@ -171,11 +179,19 @@ def main():
             expires_at = datetime.now() + timedelta(minutes=SESSION_TIMEOUT_MINUTES)
             config['last_session_info'] = {'link': new_link, 'expires_at': expires_at.isoformat()}
             save_config(config)
-            print('\\n' + '='*50)
+            # ===== 🔗 强制显示链接 (新增) =====
+            print('\\n' + '='*80)
             print('🎉 启动成功！')
-            print(f'🔗 链接: {new_link}')
-            print(f'⏰ 有效期至: {expires_at.strftime('%Y-%m-%d %H:%M:%S')}')
-            print('='*50)
+            print('🔗 SSHx 会话已启动！请复制以下链接到浏览器打开：')
+            print()
+            print(f'🌐 链接: {new_link}')
+            print()
+            print('💡 重要提示：')
+            print('   • 请在新标签页中打开此链接')
+            print('   • 链接有效期 50 分钟，支持自动续期')
+            print('   • 请勿刷新当前 Colab 页面')
+            print('='*80)
+            # ===== 结束新增 =====
             copy_to_clipboard(new_link)
             if AUTO_OPEN_BROWSER: open_in_browser(new_link)
         else: log_message('❌ 启动失败')
