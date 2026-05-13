@@ -1,5 +1,6 @@
 # colab sshx_auto
 !wget -O /content/sshx_auto.py https://raw.githubusercontent.com/ltianw-eng/colabgoogle/main/sshx_auto.py
+
 %run /content/sshx_auto.py
 # 更新软件索引，确保能找到最新版软件
 sudo apt upgrade
