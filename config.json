@@ -1,12 +1,20 @@
 {
-  "log": { "level": "info" },
-  "inbounds": [{
-    "type": "vless",
-    "tag": "vless-in",
-    "listen": "::",
-    "listen_port": 8080,
-    "users": [{ "uuid": "ad103d9c-6ab3-41d2-887d-41c33850aebc" }],
-    "transport": { "type": "ws", "path": "/chat" }
-  }],
-  "outbounds": [{ "type": "direct", "tag": "direct" }]
+ "log": {"level": "info"},
+ "inbounds": [{
+ "type": "vless",
+ "listen": "0.0.0.0",
+ "listen_port": 1443,
+ "users": [{"uuid": "${UUID}", "flow": ""}],
+ "tls": {
+ "enabled": true,
+ "server_name": "www.microsoft.com",
+ "reality": {
+ "enabled": true,
+ "handshake": {"server": "www.microsoft.com", "server_port": 443},
+ "private_key": "${PRIVATE_KEY}",
+ "short_id": ["${SHORT_ID}"]
+ }
+ }
+ }],
+ "outbounds": [{"type": "direct"}]
 }
